@@ -55,21 +55,21 @@ const server = app.listen(
   console.log(`Server running on PORT ${PORT}...`.yellow.bold)
 );
 
-const io = require("socket.io")(server, {
-  // pingTimeout: 60000,
-  cors: {
-    // origin: "https://random-chatapp.netlify.app/",
-    origin:"*"
-    // credentials: true,
-  },
-});
 // const io = require("socket.io")(server, {
-//   pingTimeout: 60000,
+//   // pingTimeout: 60000,
 //   cors: {
-//     origin: "http://localhost:3000",
+//     // origin: "https://random-chatapp.netlify.app/",
+//     origin:"*"
 //     // credentials: true,
 //   },
 // });
+const io = require("socket.io")(server, {
+  pingTimeout: 60000,
+  cors: {
+    origin: "http://localhost:3000",
+    // credentials: true,
+  },
+});
 
 io.on("connection", (socket) => {
   socket.on("setup", (userData) => {
